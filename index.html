@@ -14,7 +14,7 @@
 
 body{
     min-height:100vh;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    background:linear-gradient(135deg,#60a5fa,#1e3a8a);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -23,24 +23,24 @@ body{
 }
 
 .card{
-    background:white;
+    background:#1e3a8a;
+    color:white;
     width:90%;
     max-width:700px;
     padding:40px;
     border-radius:25px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 h1{
-    color:#ff4d6d;
     margin-bottom:20px;
 }
 
 #rose{
-    font-size:120px;
-    animation:pulse 2s infinite;
+    font-size:100px;
     margin-bottom:20px;
+    animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
@@ -53,27 +53,41 @@ h1{
     opacity:0;
     font-size:24px;
     margin:15px 0;
-    color:#444;
     transition:opacity 2s ease-in-out;
 }
 
 #photoReveal{
     opacity:0;
-    margin-top:30px;
     transition:opacity 3s ease-in-out;
+    margin-top:25px;
 }
 
-#photoReveal img{
-    width:230px;
-    max-width:90%;
+#showBtn{
+    background:white;
+    color:#1e3a8a;
+    border:none;
+    padding:15px 25px;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+#photoContainer{
+    display:none;
+    margin-top:20px;
+}
+
+#photoContainer img{
+    width:100%;
+    max-width:350px;
+    height:auto;
     border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
 }
 
-#photoReveal p{
+#photoContainer p{
     margin-top:15px;
     font-size:20px;
-    color:#ff4d6d;
     font-weight:bold;
 }
 
@@ -105,21 +119,24 @@ h1{
 <div id="rose">🌹</div>
 
 <p class="line">YOU ARE BEAUTIFUL</p>
-
 <p class="line">YOU ARE SMART</p>
-
 <p class="line">YOU ARE LOVELY</p>
-
 <p class="line">YOU ARE MY TYPE OF PERSON</p>
-
 <p class="line">JUST KNOW THAT I LOVED YOU</p>
-
 <p class="line">FROM THE VERY FIRST DAY I SAW YOU</p>
-
 <p class="line">🌹 A MESSAGE FROM YOUR TECH FRIEND 🌹</p>
 
 <div id="photoReveal">
+
+<button id="showBtn" onclick="showPhoto()">
+💙 TAP TO VIEW THE SENDER'S IMAGE 💙
+</button>
+
+<div id="photoContainer">
     <img src="me.jpg" alt="Tech Friend">
+    <p>❤️ This is the guy who coded all of this for you ❤️</p>
+</div>
+
 </div>
 
 </div>
@@ -137,6 +154,11 @@ lines.forEach((line,index)=>{
 setTimeout(()=>{
     document.getElementById("photoReveal").style.opacity="1";
 },30000);
+
+function showPhoto(){
+    document.getElementById("photoContainer").style.display="block";
+    document.getElementById("showBtn").style.display="none";
+}
 
 function createHeart(){
     const heart=document.createElement("div");
