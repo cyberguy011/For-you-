@@ -6,10 +6,15 @@
 <title>For Someone Special ❤️</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
     background:linear-gradient(135deg,#ff758c,#ff7eb3);
-    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -19,42 +24,62 @@ body{
 
 .card{
     background:white;
+    width:90%;
+    max-width:700px;
     padding:40px;
     border-radius:25px;
-    width:80%;
-    max-width:650px;
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 h1{
     color:#ff4d6d;
+    margin-bottom:20px;
 }
 
-#message{
-    font-size:22px;
-    line-height:1.8;
-    min-height:220px;
+#rose{
+    font-size:120px;
+    animation:pulse 2s infinite;
+    margin-bottom:20px;
 }
 
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    background:#ff4d6d;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+    100%{transform:scale(1);}
 }
 
-button:hover{
-    transform:scale(1.05);
+.line{
+    opacity:0;
+    font-size:24px;
+    margin:15px 0;
+    color:#444;
+    transition:opacity 2s ease-in-out;
+}
+
+#photoReveal{
+    opacity:0;
+    margin-top:30px;
+    transition:opacity 3s ease-in-out;
+}
+
+#photoReveal img{
+    width:230px;
+    max-width:90%;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+#photoReveal p{
+    margin-top:15px;
+    font-size:20px;
+    color:#ff4d6d;
+    font-weight:bold;
 }
 
 .heart{
     position:absolute;
     color:white;
-    font-size:25px;
     animation:float 6s linear infinite;
 }
 
@@ -74,51 +99,55 @@ button:hover{
 <body>
 
 <div class="card">
-    <h1>❤️ A Message For You ❤️</h1>
-    
-    <div class="rose">
-    🌹
-     </div>
-    <div id="message"></div>
 
-    <button onclick="showLove()">Click Me ❤️</button>
+<h1>❤️ For Someone Special ❤️</h1>
+
+<div id="rose">🌹</div>
+
+<p class="line">YOU ARE BEAUTIFUL</p>
+
+<p class="line">YOU ARE SMART</p>
+
+<p class="line">YOU ARE LOVELY</p>
+
+<p class="line">YOU ARE MY TYPE OF PERSON</p>
+
+<p class="line">JUST KNOW THAT I LOVED YOU</p>
+
+<p class="line">FROM THE VERY FIRST DAY I SAW YOU</p>
+
+<p class="line">🌹 A MESSAGE FROM YOUR TECH FRIEND 🌹</p>
+
+<div id="photoReveal">
+    <img src="me.jpg" alt="Tech Friend">
+    <p>❤️❤️</p>
+</div>
+
 </div>
 
 <script>
 
-const text =
-`"YOU ARE BEAUTIFUL"
+const lines = document.querySelectorAll(".line");
 
-"YOU ARE SMART"
+lines.forEach((line,index)=>{
+    setTimeout(()=>{
+        line.style.opacity="1";
+    },4000*(index+1));
+});
 
-"YOU ARE LOVELY"
-
-YOU ARE MY TYPE OF PERSON.
-
-JUST KNOW THAT I LOVED YOU
-FROM THE VERY FIRST DAY I SAW YOU. ❤️`;
-
-let i = 0;
-
-function typeWriter(){
-    if(i < text.length){
-        document.getElementById("message").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter,40);
-    }
-}
-
-typeWriter();
-
-function showLove(){
-    alert("❤️ You mean more to me than you know ❤️");
-}
+setTimeout(()=>{
+    document.getElementById("photoReveal").style.opacity="1";
+},30000);
 
 function createHeart(){
     const heart=document.createElement("div");
+
     heart.classList.add("heart");
+
     heart.innerHTML="❤️";
+
     heart.style.left=Math.random()*100+"vw";
+
     heart.style.fontSize=(20+Math.random()*30)+"px";
 
     document.body.appendChild(heart);
